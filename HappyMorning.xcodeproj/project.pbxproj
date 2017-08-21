@@ -12,6 +12,8 @@
 		B40D54FA1F40E046006DFC1F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B40D54F81F40E046006DFC1F /* Main.storyboard */; };
 		B40D54FC1F40E046006DFC1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B40D54FB1F40E046006DFC1F /* Assets.xcassets */; };
 		B40D54FF1F40E046006DFC1F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B40D54FD1F40E046006DFC1F /* LaunchScreen.storyboard */; };
+		B45719F41F468AE2001DB291 /* QuotesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45719F31F468AE2001DB291 /* QuotesModel.swift */; };
+		B46CF1521F4625610023EBF1 /* MyQuotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46CF1511F4625610023EBF1 /* MyQuotesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		B40D54FB1F40E046006DFC1F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B40D54FE1F40E046006DFC1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B40D55001F40E046006DFC1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B45719F31F468AE2001DB291 /* QuotesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuotesModel.swift; sourceTree = "<group>"; };
+		B46CF1511F4625610023EBF1 /* MyQuotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyQuotesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,13 +59,23 @@
 			isa = PBXGroup;
 			children = (
 				B40D54F41F40E046006DFC1F /* AppDelegate.swift */,
+				B45719F31F468AE2001DB291 /* QuotesModel.swift */,
 				B40D54F61F40E046006DFC1F /* ViewController.swift */,
+				B46CF1511F4625610023EBF1 /* MyQuotesViewController.swift */,
 				B40D54F81F40E046006DFC1F /* Main.storyboard */,
+				B46CF1531F4625700023EBF1 /* Supporting Files */,
+			);
+			path = HappyMorning;
+			sourceTree = "<group>";
+		};
+		B46CF1531F4625700023EBF1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
 				B40D54FB1F40E046006DFC1F /* Assets.xcassets */,
 				B40D54FD1F40E046006DFC1F /* LaunchScreen.storyboard */,
 				B40D55001F40E046006DFC1F /* Info.plist */,
 			);
-			path = HappyMorning;
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,7 +151,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B46CF1521F4625610023EBF1 /* MyQuotesViewController.swift in Sources */,
 				B40D54F71F40E046006DFC1F /* ViewController.swift in Sources */,
+				B45719F41F468AE2001DB291 /* QuotesModel.swift in Sources */,
 				B40D54F51F40E046006DFC1F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -304,6 +320,7 @@
 				B40D55051F40E046006DFC1F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

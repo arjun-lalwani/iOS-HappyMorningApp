@@ -31,29 +31,27 @@
                                 <color key="textColor" red="0.4479322731" green="0.32686910029999999" blue="0.639311254" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fBt-Aa-ljh">
-                                <rect key="frame" x="33" y="298" width="309" height="70"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fBt-Aa-ljh" userLabel="View ">
+                                <rect key="frame" x="33" y="292" width="309" height="70"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type your Quote here 👇" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="14" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Y4o-Ja-M8f">
-                                        <rect key="frame" x="0.0" y="0.0" width="309" height="70"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="70" id="BRV-qm-FMA"/>
-                                            <constraint firstAttribute="width" constant="309" id="NDe-gg-O09"/>
-                                        </constraints>
-                                        <nil key="textColor"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c5p-kw-MDb">
+                                        <rect key="frame" x="6" y="4" width="297" height="62"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="Y4o-Ja-M8f" firstAttribute="centerX" secondItem="fBt-Aa-ljh" secondAttribute="centerX" id="1HL-dg-k4k"/>
-                                    <constraint firstItem="Y4o-Ja-M8f" firstAttribute="centerY" secondItem="fBt-Aa-ljh" secondAttribute="centerY" id="oRt-Qu-oVX"/>
+                                    <constraint firstItem="c5p-kw-MDb" firstAttribute="leading" secondItem="fBt-Aa-ljh" secondAttribute="leading" constant="6" id="LuZ-uB-lCQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="c5p-kw-MDb" secondAttribute="bottom" constant="4" id="bfc-hA-m1N"/>
                                     <constraint firstAttribute="height" constant="70" id="pBx-iq-Mww"/>
+                                    <constraint firstAttribute="trailing" secondItem="c5p-kw-MDb" secondAttribute="trailing" constant="6" id="pzb-UT-dm8"/>
+                                    <constraint firstItem="c5p-kw-MDb" firstAttribute="top" secondItem="fBt-Aa-ljh" secondAttribute="top" constant="4" id="rOX-MO-rpc"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="buo-nK-xg0">
-                                <rect key="frame" x="16" y="420" width="343" height="90"/>
+                                <rect key="frame" x="16" y="414" width="343" height="90"/>
                                 <subviews>
                                     <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="KwS-hv-FyG">
                                         <rect key="frame" x="17" y="42" width="309" height="44"/>
@@ -131,7 +129,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SiJ-Le-u3e">
-                                <rect key="frame" x="77" y="553" width="220" height="37"/>
+                                <rect key="frame" x="77" y="547" width="220" height="37"/>
                                 <color key="backgroundColor" red="0.4479322731" green="0.32686910029999999" blue="0.639311254" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="44" id="KEy-nO-jSB"/>
@@ -151,14 +149,12 @@
                             <constraint firstItem="SiJ-Le-u3e" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="D8i-8H-Xtg"/>
                             <constraint firstItem="buo-nK-xg0" firstAttribute="top" secondItem="fBt-Aa-ljh" secondAttribute="bottom" constant="52" id="DeO-1D-C0p"/>
                             <constraint firstItem="fBt-Aa-ljh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="17" id="FpX-3U-Yxs"/>
-                            <constraint firstItem="fBt-Aa-ljh" firstAttribute="top" secondItem="Oqf-AX-Lxg" secondAttribute="bottom" constant="34" id="Gm1-2v-xgB"/>
                             <constraint firstAttribute="trailing" secondItem="Oqf-AX-Lxg" secondAttribute="trailing" id="PSR-SH-p7a"/>
-                            <constraint firstItem="Y4o-Ja-M8f" firstAttribute="top" secondItem="Oqf-AX-Lxg" secondAttribute="bottom" constant="34" id="Sfp-zC-czU"/>
                             <constraint firstItem="SiJ-Le-u3e" firstAttribute="top" secondItem="buo-nK-xg0" secondAttribute="bottom" constant="43" id="dgi-l4-YIS"/>
                             <constraint firstItem="Oqf-AX-Lxg" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="gYt-it-aus"/>
                             <constraint firstAttribute="trailingMargin" secondItem="fBt-Aa-ljh" secondAttribute="trailing" constant="17" id="hel-Iy-tQk"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Y4o-Ja-M8f" secondAttribute="trailing" constant="17" id="lxF-uO-u4o"/>
                             <constraint firstItem="Oqf-AX-Lxg" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="nsQ-3C-TG4"/>
+                            <constraint firstItem="fBt-Aa-ljh" firstAttribute="top" secondItem="Oqf-AX-Lxg" secondAttribute="bottom" constant="28" id="p9V-zz-dI4"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="New Quote" id="TIT-Ey-KRD"/>
@@ -166,7 +162,7 @@
                         <outlet property="facebookOval" destination="fSj-X2-qa3" id="Wha-8W-7aC"/>
                         <outlet property="navBar" destination="TIT-Ey-KRD" id="ZYU-JI-Svz"/>
                         <outlet property="postButton" destination="SiJ-Le-u3e" id="y5j-Vn-Qnk"/>
-                        <outlet property="quoteTextField" destination="Y4o-Ja-M8f" id="tex-bC-ghs"/>
+                        <outlet property="quoteTextField" destination="c5p-kw-MDb" id="dJy-Bo-REA"/>
                         <outlet property="textFieldView" destination="fBt-Aa-ljh" id="uA4-7k-F0u"/>
                         <outlet property="twitterOval" destination="QdZ-1J-Pha" id="CTG-Mr-NMw"/>
                     </connections>
@@ -236,7 +232,7 @@
         <scene sceneID="Tew-Yz-K1I">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dUt-fi-Q0v" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="New Quote" id="gqz-vN-dHI"/>
+                    <tabBarItem key="tabBarItem" title="New Quote" image="new-quote" id="gqz-vN-dHI"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4yn-F8-apB">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -274,7 +270,7 @@
         <scene sceneID="7dV-xN-8xk">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vT7-4R-Fsd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="My Quotes" id="201-Rc-ZGe"/>
+                    <tabBarItem key="tabBarItem" title="My Quotes" image="table-list" id="201-Rc-ZGe"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xrU-Ut-suf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -292,5 +288,7 @@
     </scenes>
     <resources>
         <image name="empty-oval" width="23" height="23"/>
+        <image name="new-quote" width="25" height="25"/>
+        <image name="table-list" width="25" height="25"/>
     </resources>
 </document>

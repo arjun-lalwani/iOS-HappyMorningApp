@@ -10,31 +10,38 @@ import UIKit
 
 class MyQuotesViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    // MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
     
+    // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         
         // turns off default alpha value set by navigation controller on navigation bar
-        // this allows AppDelegate customaizations to remain intact
         self.navigationController?.navigationBar.isTranslucent = false
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+    override func viewWillAppear(_ animated: Bool) {
+        // contents of the table are reset before view appears as model data may be mutated
+        self.tableView.reloadData()
     }
     
+    // MARK: UITableViewController
+    
+    // returns number of rows that can be selected
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return QuotesAPI.shared.getAllQuotes().count
+    }
+    
+    // returns each table view cell filled with data from model
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        // deqeue reusable cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "quotesCell", for: indexPath)
         
-        var quotes = AllQuotes()
-        print(quotes.getAllQuotes())
-        print(indexPath.row)
-//        let quote : Quote = quotes.getAllQuotes()[indexPath.row]
-        cell.textLabel?.text = "h"
-    
+        // get quote from model to fill cell with appropriate data
+        let quote: Quote = QuotesAPI.shared.getAllQuotes()[indexPath.row]
+        cell.textLabel?.text = quote.getQuote()
         return cell
     }
 }

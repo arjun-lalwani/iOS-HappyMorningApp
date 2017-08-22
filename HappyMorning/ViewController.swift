@@ -13,11 +13,11 @@ enum socialMedia {
     case twitter
 }
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class ViewController: UIViewController, UITextViewDelegate {
     
     // MARK: Outlets
     @IBOutlet weak var navBar: UINavigationItem!
-    @IBOutlet weak var quoteTextField: UITextField!
+    @IBOutlet weak var quoteTextField: UITextView!
     @IBOutlet weak var textFieldView: UIView!
     @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var facebookOval: UIButton!
@@ -29,16 +29,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var emptyOval: UIImage!
     var checkedOval: UIImage!
     
-    var quotes = AllQuotes()
+    var quotes = QuotesAPI.shared
     
+    // MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
         quoteTextField.delegate = self
-        
+    
         // turns off default alpha value set by navigation controller on navigation bar
-        // this allows AppDelegate customaizations to remain intact
         self.navigationController?.navigationBar.isTranslucent = false
         
         facebookChecked = false
@@ -48,17 +47,21 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        // add any customizations
         postButton.layer.cornerRadius = 20.0
         textFieldView.layer.cornerRadius = 20.0
         textFieldView.layer.borderWidth = 0.5
         textFieldView.clipsToBounds = true
+        
+        // illusion of placeholder text
+        quoteTextField.text = "Type your quote here 👇"
+        quoteTextField.textColor = UIColor.lightGray
+        quoteTextField.textAlignment = .center
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+    // MARK: Actions
+
+    // toggles facebook check box icon
     @IBAction func socialMediaSelected(_ sender: UIButton) {
         if facebookChecked {
             facebookOval.setBackgroundImage(emptyOval, for: .normal)
@@ -69,6 +72,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    // toggles twitter check box icon
     @IBAction func socialMediaTwitterSelected(_ sender: UIButton) {
         if twitterChecked {
             twitterOval.setBackgroundImage(emptyOval, for: .normal)
@@ -79,28 +83,51 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    // renders to default view and adds new quote to the model
     @IBAction func postButton(_ sender: UIButton) {
-        let resetImage = UIImage(named: "empty-oval")
-        
-        facebookOval.setBackgroundImage(resetImage, for: .normal)
-        twitterOval.setBackgroundImage(resetImage, for: .normal)
-        
-        // manipulate data using facebook check and twitter check
-        // use delegate to pass data to my VC
-        if let text = quoteTextField.text {
-            let newQuote = Quote(quote: text, numOfCharachers: text.characters.count)
+        if quoteTextField.text != "" {
             
-            quotes.addNewQuote(newQuote: newQuote)
-            print(quotes.getAllQuotes())
+            // add quote to shared data model
+            if let text = quoteTextField.text {
+                let newQuote = Quote(quote: text, numOfCharachers: text.characters.count)
+                quotes.addQuote(newQuote)
+                print(quotes.getAllQuotes())
+            }
+            
+            // replaces textfield with placeholder
+            quoteTextField.text = "Type your quote here 👇"
+            quoteTextField.textColor = UIColor.lightGray
+            quoteTextField.textAlignment = .center
+            
+            // reset Facebook and Twitter options to false
+            let resetImage = UIImage(named: "empty-oval")
+            
+            facebookOval.setBackgroundImage(resetImage, for: .normal)
+            twitterOval.setBackgroundImage(resetImage, for: .normal)
+            
+            // USE APIS
+            
+            facebookChecked = false
+            twitterChecked = false
         }
-    
-        facebookChecked = false
-        twitterChecked = false
     }
     
+    // changes text color when user begins editing
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+             quoteTextField.textAlignment = .left
+        }
+    }
+    
+    
     // dismiss keyboard
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if(text == "\n") {
+            textView.resignFirstResponder()
+            return false
+        }
         return true
     }
 }

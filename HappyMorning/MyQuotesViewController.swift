@@ -13,10 +13,14 @@ class MyQuotesViewController: UIViewController, UITableViewDelegate, UITableView
     // MARK: Outlets
     @IBOutlet weak var tableView: UITableView!
     
+    
+    // MARK: Properties
+    var userDefaults: UserDefaults!
+    
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // turns off default alpha value set by navigation controller on navigation bar
         self.navigationController?.navigationBar.isTranslucent = false
     }

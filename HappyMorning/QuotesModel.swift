@@ -51,3 +51,17 @@ final class QuotesAPI {
     }
 }
 
+class UserDefaultsManager {
+    
+    let userDefaults = UserDefaults.standard
+    
+    init() {
+        userDefaults.set(QuotesAPI.shared.getAllQuotes(), forKey: "allQuotes")
+    }
+    
+    func getAllQuotes() -> [Quote] {
+        return userDefaults.value(forKey: "allQuotes") as! [Quote]
+    }
+}
+
+

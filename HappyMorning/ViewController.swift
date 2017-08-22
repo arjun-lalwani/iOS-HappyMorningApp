@@ -85,13 +85,12 @@ class ViewController: UIViewController, UITextViewDelegate {
     
     // renders to default view and adds new quote to the model
     @IBAction func postButton(_ sender: UIButton) {
-        if quoteTextField.text != "" {
+        if quoteTextField.textColor == UIColor.black {
             
             // add quote to shared data model
             if let text = quoteTextField.text {
                 let newQuote = Quote(quote: text, numOfCharachers: text.characters.count)
                 quotes.addQuote(newQuote)
-                print(quotes.getAllQuotes())
             }
             
             // replaces textfield with placeholder

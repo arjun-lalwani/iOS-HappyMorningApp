@@ -14,6 +14,7 @@ final class QuotesAPI {
     // only 1 instance of the class is ever created and can be accessed from anywhere.
     static let shared = QuotesAPI()
 
+    // adds quote to local storage
     func addQuote(_ quote: String) {
         if var allQuotes = UserDefaults.standard.stringArray(forKey: "allQuotes") {
             allQuotes.append(quote)
@@ -23,6 +24,7 @@ final class QuotesAPI {
         }
     }
     
+    // deletes quote from local storage
     func deleteQuote(at index: Int) {
         if var allQuotes = UserDefaults.standard.stringArray(forKey: "allQuotes") {
             allQuotes.remove(at: index)
@@ -30,6 +32,7 @@ final class QuotesAPI {
         }
     }
 
+    // returns all quotes from local storage, if no quotes found, returns nil
     func getAllQuotes() -> [String]? {
         if let quotes = UserDefaults.standard.stringArray(forKey: "allQuotes") {
             return quotes
@@ -37,6 +40,7 @@ final class QuotesAPI {
         return nil
     }
     
+    // clears all quotes in local storage
     func deleteAllQuotes() {
         UserDefaults.standard.removeObject(forKey: "allQuotes")
     }

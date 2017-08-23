@@ -42,8 +42,10 @@ class MyQuotesViewController: UIViewController, UITableViewDelegate, UITableView
     
     // MARK: Actions
     @IBAction func clearButtonPressed(_ sender: UIBarButtonItem) {
-        // clears table view
+        // clears model
         quotes.deleteAllQuotes()
+        
+        // updates view dynamically
         self.tableView.reloadData()
     }
     

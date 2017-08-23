@@ -35,15 +35,17 @@ class ViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // set default properties to initialize
         quoteTextField.delegate = self
+        facebookChecked = false
+        twitterChecked = false
+        
+        // default cusomtizations for initial view
+        emptyOval = UIImage(named: "empty-oval")
+        checkedOval = UIImage(named: "check-mark")
     
         // turns off default alpha value set by navigation controller on navigation bar
         self.navigationController?.navigationBar.isTranslucent = false
-        
-        facebookChecked = false
-        twitterChecked = false
-        emptyOval = UIImage(named: "empty-oval")
-        checkedOval = UIImage(named: "check-mark")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -86,19 +88,17 @@ class ViewController: UIViewController, UITextViewDelegate {
     // renders to default view and adds new quote to the model
     @IBAction func postButton(_ sender: UIButton) {
         
-        // reset Facebook and Twitter options to false
+        // switch to default cusomtizations for initial view
         let resetImage = UIImage(named: "empty-oval")
-        
         facebookOval.setBackgroundImage(resetImage, for: .normal)
         twitterOval.setBackgroundImage(resetImage, for: .normal)
         
+        // configure text only entered by user
         if quoteTextField.textColor == UIColor.black {
             
             // add quote to shared data model
-            if let text = quoteTextField.text {
-                let newQuote = text
-                quotes.addQuote(newQuote)                
-                print("\(UserDefaults.standard.object(forKey: "allQuotes")!)")
+            if let newQuote = quoteTextField.text {
+                quotes.addQuote(newQuote)
             }
             
             // replaces textfield with placeholder
@@ -110,6 +110,7 @@ class ViewController: UIViewController, UITextViewDelegate {
         
         }
 
+        // switch to default cusomtizations for initial view
         facebookChecked = false
         twitterChecked = false
     }

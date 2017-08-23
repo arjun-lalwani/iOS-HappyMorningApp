@@ -21,8 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = UIColor(red: 114.0/255, green: 83.0/255, blue: 163.0/255, alpha: 1.0)
         
         // Set font style and color of text, all titleTextAttributes need to be set in this array
-        let navigationTitleFont = UIFont(name: "Avenir Next", size: 18
-            )!
+        let navigationTitleFont = UIFont(name: "Avenir Next", size: 18)!
+        
         UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: navigationTitleFont, NSForegroundColorAttributeName: UIColor.white]
         
         // Set the tint color (back button when moving from one VC to another)
@@ -30,6 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Change status bar color after setting it to NO in Info.plist
         UIApplication.shared.statusBarStyle = .lightContent
+        
+        // initializae local storage 
+       // UserDefaults.standard.setValue([Quote](), forKey: "allQuotes")
         
         return true
     }

@@ -8,60 +8,37 @@
 
 import Foundation
 
-
-class Quote {
-    var quote: String
-    var numOfCharachers: Int
-    
-    init(quote: String, numOfCharachers: Int) {
-        self.quote = quote
-        self.numOfCharachers = numOfCharachers
-    }
-    
-    func getQuote() -> String {return self.quote}
-    
-    func getNumOfChar() -> Int {return self.numOfCharachers}
-}
-
-
 // final - causes compile time error if anyone tries to subclass from QuotesAPI or override it.
 final class QuotesAPI {
     
     // only 1 instance of the class is ever created and can be accessed from anywhere.
     static let shared = QuotesAPI()
 
-    private var quotes: [Quote]
-    
-    private init() {
-        quotes = [Quote]()
-    }
-    
-    func addQuote(_ quote: Quote) {
-        quotes.append(quote)
+    func addQuote(_ quote: String) {
+        if var allQuotes = UserDefaults.standard.stringArray(forKey: "allQuotes") {
+            allQuotes.append(quote)
+            UserDefaults.standard.set(allQuotes, forKey: "allQuotes")
+        } else {
+            UserDefaults.standard.set([quote], forKey: "allQuotes")
+        }
     }
     
     func deleteQuote(at index: Int) {
-        quotes.remove(at: index)
+        if var allQuotes = UserDefaults.standard.stringArray(forKey: "allQuotes") {
+            allQuotes.remove(at: index)
+            UserDefaults.standard.set(allQuotes, forKey: "allQuotes")
+        }
     }
 
-    func getAllQuotes() -> [Quote] {
-        // encapsulating original data from being mutated
-        let quotes = self.quotes
-        return quotes
+    func getAllQuotes() -> [String]? {
+        if let quotes = UserDefaults.standard.stringArray(forKey: "allQuotes") {
+            return quotes
+        }
+        return nil
+    }
+    
+    func deleteAllQuotes() {
+        UserDefaults.standard.removeObject(forKey: "allQuotes")
     }
 }
-
-class UserDefaultsManager {
-    
-    let userDefaults = UserDefaults.standard
-    
-    init() {
-        userDefaults.set(QuotesAPI.shared.getAllQuotes(), forKey: "allQuotes")
-    }
-    
-    func getAllQuotes() -> [Quote] {
-        return userDefaults.value(forKey: "allQuotes") as! [Quote]
-    }
-}
-
 

@@ -219,8 +219,15 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" title="My Quotes" id="464-zg-XmY"/>
+                    <navigationItem key="navigationItem" title="My Quotes" id="464-zg-XmY">
+                        <barButtonItem key="leftBarButtonItem" title="Clear" id="t6p-sR-dR1">
+                            <connections>
+                                <action selector="clearButtonPressed:" destination="sqq-MQ-3ya" id="WrB-3a-MGn"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="clearButton" destination="t6p-sR-dR1" id="hHf-jU-l80"/>
                         <outlet property="tableView" destination="a3q-pa-Na5" id="BLj-ar-toM"/>
                     </connections>
                 </viewController>

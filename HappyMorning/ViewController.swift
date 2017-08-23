@@ -85,12 +85,20 @@ class ViewController: UIViewController, UITextViewDelegate {
     
     // renders to default view and adds new quote to the model
     @IBAction func postButton(_ sender: UIButton) {
+        
+        // reset Facebook and Twitter options to false
+        let resetImage = UIImage(named: "empty-oval")
+        
+        facebookOval.setBackgroundImage(resetImage, for: .normal)
+        twitterOval.setBackgroundImage(resetImage, for: .normal)
+        
         if quoteTextField.textColor == UIColor.black {
             
             // add quote to shared data model
             if let text = quoteTextField.text {
-                let newQuote = Quote(quote: text, numOfCharachers: text.characters.count)
-                quotes.addQuote(newQuote)
+                let newQuote = text
+                quotes.addQuote(newQuote)                
+                print("\(UserDefaults.standard.object(forKey: "allQuotes")!)")
             }
             
             // replaces textfield with placeholder
@@ -98,17 +106,12 @@ class ViewController: UIViewController, UITextViewDelegate {
             quoteTextField.textColor = UIColor.lightGray
             quoteTextField.textAlignment = .center
             
-            // reset Facebook and Twitter options to false
-            let resetImage = UIImage(named: "empty-oval")
-            
-            facebookOval.setBackgroundImage(resetImage, for: .normal)
-            twitterOval.setBackgroundImage(resetImage, for: .normal)
-            
-            // USE APIS
-            
-            facebookChecked = false
-            twitterChecked = false
+            // USE APIs
+        
         }
+
+        facebookChecked = false
+        twitterChecked = false
     }
     
     // changes text color when user begins editing
@@ -119,7 +122,6 @@ class ViewController: UIViewController, UITextViewDelegate {
              quoteTextField.textAlignment = .left
         }
     }
-    
     
     // dismiss keyboard
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TwitterKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        Twitter.sharedInstance().start(withConsumerKey:"DUnmzj5I5MbWlJm72N89FiVEz", consumerSecret:"cbM8fZBjAPb90hqb3AIrkRZIKyfkrml76kXGDdKEUv7lrjO3qg")
+        
+        if UserDefaults.standard.bool(forKey: "loginPageViewed") {
+//             UserDefaults.standard.setValue(false, forKey: "loginPageViewed")
+            self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mainVC")
+        } else {
+            UserDefaults.standard.setValue(true, forKey: "loginPageViewed")
+            self.window?.rootViewController = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "loginVC")
+        }
+    
         // Set navigation bar tint/background color (#7253A3)
         UINavigationBar.appearance().barTintColor = UIColor(red: 114.0/255, green: 83.0/255, blue: 163.0/255, alpha: 1.0)
         
@@ -30,11 +41,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Change status bar color after setting it to NO in Info.plist
         UIApplication.shared.statusBarStyle = .lightContent
-        
-        // initializae local storage 
-       // UserDefaults.standard.setValue([Quote](), forKey: "allQuotes")
-        
+    
         return true
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        return Twitter.sharedInstance().application(app, open: url, options: options)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

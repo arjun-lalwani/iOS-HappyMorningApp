@@ -7,11 +7,7 @@
 //
 
 import UIKit
-
-enum socialMedia {
-    case facebook
-    case twitter
-}
+import TwitterKit
 
 class ViewController: UIViewController, UITextViewDelegate {
     
@@ -23,13 +19,14 @@ class ViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var facebookOval: UIButton!
     @IBOutlet weak var twitterOval: UIButton!
     
-    // MARK: Properties
-    var facebookChecked: Bool!
-    var twitterChecked: Bool!
-    var emptyOval: UIImage!
-    var checkedOval: UIImage!
+    // MARK: Properties 
     
-    var quotes = QuotesAPI.shared
+    // default initializing properties
+    var socialMedia = (fbSelected: false, twitterSelected: false)
+    var ovals = (empty: UIImage(named: "empty-oval"), checked: UIImage(named: "check-mark"))
+    
+    // model is protected, so no one can create a new instance of this class and access the quotes using the '.' syntax
+    private var quotes = QuotesAPI.shared
     
     // MARK: Life Cycle
     override func viewDidLoad() {
@@ -37,51 +34,51 @@ class ViewController: UIViewController, UITextViewDelegate {
         
         // set default properties to initialize
         quoteTextField.delegate = self
-        facebookChecked = false
-        twitterChecked = false
-        
-        // default cusomtizations for initial view
-        emptyOval = UIImage(named: "empty-oval")
-        checkedOval = UIImage(named: "check-mark")
     
         // turns off default alpha value set by navigation controller on navigation bar
         self.navigationController?.navigationBar.isTranslucent = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        // add any customizations
+        // adding customizations
         postButton.layer.cornerRadius = 20.0
         textFieldView.layer.cornerRadius = 20.0
         textFieldView.layer.borderWidth = 0.5
         textFieldView.clipsToBounds = true
         
         // illusion of placeholder text
-        quoteTextField.text = "Type your quote here 👇"
-        quoteTextField.textColor = UIColor.lightGray
-        quoteTextField.textAlignment = .center
+        SetToDefault(quoteTextField)
+        
+        
+        if (Twitter.sharedInstance().sessionStore.hasLoggedInUsers()) {
+            print(Twitter.sharedInstance().sessionStore.existingUserSessions())
+            print("exists")
+        } else {
+            print("no user exists")
+        }
     }
     
     // MARK: Actions
 
     // toggles facebook check box icon
     @IBAction func socialMediaSelected(_ sender: UIButton) {
-        if facebookChecked {
-            facebookOval.setBackgroundImage(emptyOval, for: .normal)
-            facebookChecked = false
+        if socialMedia.fbSelected {
+            facebookOval.setBackgroundImage(ovals.empty, for: .normal)
+            socialMedia.fbSelected = false
         } else {
-            facebookOval.setBackgroundImage(checkedOval, for: .normal)
-            facebookChecked = true
+            facebookOval.setBackgroundImage(ovals.checked, for: .normal)
+            socialMedia.fbSelected = true
         }
     }
     
     // toggles twitter check box icon
     @IBAction func socialMediaTwitterSelected(_ sender: UIButton) {
-        if twitterChecked {
-            twitterOval.setBackgroundImage(emptyOval, for: .normal)
-            twitterChecked = false
+        if socialMedia.twitterSelected {
+            twitterOval.setBackgroundImage(ovals.empty, for: .normal)
+            socialMedia.twitterSelected = false
         } else {
-            twitterOval.setBackgroundImage(checkedOval, for: .normal)
-            twitterChecked = true
+            twitterOval.setBackgroundImage(ovals.checked, for: .normal)
+            socialMedia.twitterSelected = true
         }
     }
     
@@ -89,9 +86,8 @@ class ViewController: UIViewController, UITextViewDelegate {
     @IBAction func postButton(_ sender: UIButton) {
         
         // switch to default cusomtizations for initial view
-        let resetImage = UIImage(named: "empty-oval")
-        facebookOval.setBackgroundImage(resetImage, for: .normal)
-        twitterOval.setBackgroundImage(resetImage, for: .normal)
+        facebookOval.setBackgroundImage(ovals.empty, for: .normal)
+        twitterOval.setBackgroundImage(ovals.empty, for: .normal)
         
         // configure text only entered by user
         if quoteTextField.textColor == UIColor.black {
@@ -99,20 +95,15 @@ class ViewController: UIViewController, UITextViewDelegate {
             // add quote to shared data model
             if let newQuote = quoteTextField.text {
                 quotes.addQuote(newQuote)
+                postToTwitter(newQuote)
             }
             
             // replaces textfield with placeholder
-            quoteTextField.text = "Type your quote here 👇"
-            quoteTextField.textColor = UIColor.lightGray
-            quoteTextField.textAlignment = .center
-            
-            // USE APIs
-        
+            SetToDefault(quoteTextField)
         }
 
         // switch to default cusomtizations for initial view
-        facebookChecked = false
-        twitterChecked = false
+        socialMedia = (false, false)
     }
     
     // changes text color when user begins editing
@@ -120,7 +111,7 @@ class ViewController: UIViewController, UITextViewDelegate {
         if textView.textColor == UIColor.lightGray {
             textView.text = nil
             textView.textColor = UIColor.black
-             quoteTextField.textAlignment = .left
+            quoteTextField.textAlignment = .left
         }
     }
     
@@ -131,5 +122,28 @@ class ViewController: UIViewController, UITextViewDelegate {
             return false
         }
         return true
+    }
+    
+    private func SetToDefault(_ textView: UITextView) {
+        textView.text = "Type your quote here 👇"
+        textView.textColor = UIColor.lightGray
+        textView.textAlignment = .center
+    }
+    
+    private func postToTwitter(_ newQuote: String) {
+        let composer = TWTRComposer()
+        
+        composer.setText(newQuote)
+        composer.setImage(UIImage(named: "twitterkit"))
+        
+        
+        composer.show(from: self.navigationController!, completion: {(result) -> Void in
+            print(result)
+            if (result == .done) {
+                print("Successfully composed Tweet")
+            } else {
+                print("Cancelled composing")
+            }
+        })
     }
 }

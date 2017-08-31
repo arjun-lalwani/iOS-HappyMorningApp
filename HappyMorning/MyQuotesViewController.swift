@@ -14,7 +14,7 @@ class MyQuotesViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var clearButton: UIBarButtonItem!
     
-    var quotes: QuotesAPI!
+    private var quotes: QuotesAPI!
 
     // MARK: Life cycle
     override func viewDidLoad() {
@@ -24,14 +24,14 @@ class MyQuotesViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.dataSource = self
 
         quotes = QuotesAPI.shared
+        
         // turns off default alpha value set by navigation controller on navigation bar
         self.navigationController?.navigationBar.isTranslucent = false
         
         // customize bar button item
         let font = UIFont(name: "Avenir Next", size: 16)!
         clearButton.setTitleTextAttributes([NSFontAttributeName: font], for: .normal)
-        
-        
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -87,5 +87,4 @@ class MyQuotesViewController: UIViewController, UITableViewDelegate, UITableView
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }
-
 }

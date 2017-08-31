@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import TwitterKit
 
 // final - causes compile time error if anyone tries to subclass from QuotesAPI or override it.
 final class QuotesAPI {
@@ -45,4 +46,3 @@ final class QuotesAPI {
         UserDefaults.standard.removeObject(forKey: "allQuotes")
     }
 }
-

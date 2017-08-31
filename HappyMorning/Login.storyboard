@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="hqQ-pm-UMK">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--loginVC-->
+        <scene sceneID="4j9-SO-4Zg">
+            <objects>
+                <viewController storyboardIdentifier="loginVC" title="loginVC" automaticallyAdjustsScrollViewInsets="NO" id="hqQ-pm-UMK" customClass="LoginViewController" customModule="HappyMorning" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qfH-jl-acP"/>
+                        <viewControllerLayoutGuide type="bottom" id="cyQ-cX-wGY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cpc-cJ-bbK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" alpha="0.84999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p6V-Vt-853">
+                                <rect key="frame" x="84" y="501" width="246" height="50"/>
+                                <color key="backgroundColor" red="0.18432764708995819" green="0.43445083498954773" blue="0.79614293575286865" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="hKY-6v-8eg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
+                                <state key="normal" title="Log in with Twitter">
+                                    <color key="titleColor" red="1" green="0.99997568130000003" blue="0.99999272819999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginWithTwitterTapped:" destination="hqQ-pm-UMK" eventType="touchUpInside" id="82P-1p-NKy"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Happy Morning" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zs6-BS-Lfd">
+                                <rect key="frame" x="20" y="55" width="374" height="84"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="84" id="JWh-4Z-OHL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Italic" family="Avenir Next" pointSize="45"/>
+                                <color key="textColor" red="1" green="0.99997568130000003" blue="0.99999272819999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post all your favorite morning quotes  from one place" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h9O-zT-Vrb">
+                                <rect key="frame" x="20" y="147" width="374" height="73"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="73" id="bZX-7C-C9Z"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
+                                <color key="textColor" red="1" green="0.99997568130000003" blue="0.99999272819999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="For the best experience, log in with all your favorite platforms" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wFb-JU-CrS">
+                                <rect key="frame" x="20" y="415" width="374" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="i4k-A5-fOj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
+                                <color key="textColor" red="0.23755814140000001" green="0.45042321089999998" blue="0.71771448849999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" alpha="0.84999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ue0-CN-8C6">
+                                <rect key="frame" x="84" y="577" width="246" height="50"/>
+                                <color key="backgroundColor" red="0.24148915708065033" green="0.45433482527732849" blue="0.72555691003799438" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Ozq-Ib-lGB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
+                                <state key="normal" title="Log in with Facebook">
+                                    <color key="titleColor" red="1" green="0.99997568130000003" blue="0.99999272819999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginWithFacebookTapped:" destination="hqQ-pm-UMK" eventType="touchUpInside" id="4Kf-dU-tCi"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.84999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n4c-3E-WB2">
+                                <rect key="frame" x="159.66666666666666" y="662" width="94" height="40"/>
+                                <color key="backgroundColor" red="0.23755814135074615" green="0.45042321085929871" blue="0.71771448850631714" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="94" id="EU6-27-77Z"/>
+                                    <constraint firstAttribute="height" constant="40" id="S7U-Hl-8kj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleColor" red="1" green="0.99997568130000003" blue="0.99999272819999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="doneTapped:" destination="hqQ-pm-UMK" eventType="touchUpInside" id="hfg-wb-lpP"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Zs6-BS-Lfd" firstAttribute="leading" secondItem="cpc-cJ-bbK" secondAttribute="leadingMargin" id="3wm-pz-ukv"/>
+                            <constraint firstItem="ue0-CN-8C6" firstAttribute="top" secondItem="p6V-Vt-853" secondAttribute="bottom" constant="26" id="GAt-ma-efQ"/>
+                            <constraint firstItem="Zs6-BS-Lfd" firstAttribute="trailing" secondItem="cpc-cJ-bbK" secondAttribute="trailingMargin" id="Jdx-oZ-LA1"/>
+                            <constraint firstItem="n4c-3E-WB2" firstAttribute="top" secondItem="ue0-CN-8C6" secondAttribute="bottom" constant="35" id="R2n-dJ-32j"/>
+                            <constraint firstItem="h9O-zT-Vrb" firstAttribute="trailing" secondItem="wFb-JU-CrS" secondAttribute="trailing" id="SbJ-EI-e2D"/>
+                            <constraint firstItem="Zs6-BS-Lfd" firstAttribute="top" secondItem="qfH-jl-acP" secondAttribute="bottom" constant="35" id="W9i-cs-Bj6"/>
+                            <constraint firstItem="h9O-zT-Vrb" firstAttribute="leading" secondItem="wFb-JU-CrS" secondAttribute="leading" id="YTE-lf-XrR"/>
+                            <constraint firstItem="p6V-Vt-853" firstAttribute="trailing" secondItem="ue0-CN-8C6" secondAttribute="trailing" id="h9h-9v-DF4"/>
+                            <constraint firstItem="wFb-JU-CrS" firstAttribute="centerX" secondItem="p6V-Vt-853" secondAttribute="centerX" id="kAH-Lh-zex"/>
+                            <constraint firstItem="Zs6-BS-Lfd" firstAttribute="trailing" secondItem="h9O-zT-Vrb" secondAttribute="trailing" id="kZ0-sD-aEY"/>
+                            <constraint firstItem="Zs6-BS-Lfd" firstAttribute="leading" secondItem="h9O-zT-Vrb" secondAttribute="leading" id="nlT-i8-nON"/>
+                            <constraint firstItem="h9O-zT-Vrb" firstAttribute="top" secondItem="Zs6-BS-Lfd" secondAttribute="bottom" constant="8" symbolic="YES" id="ojI-hj-qdC"/>
+                            <constraint firstItem="p6V-Vt-853" firstAttribute="top" secondItem="wFb-JU-CrS" secondAttribute="bottom" constant="22" id="q7X-dI-PgA"/>
+                            <constraint firstItem="p6V-Vt-853" firstAttribute="leading" secondItem="ue0-CN-8C6" secondAttribute="leading" id="rEJ-8f-5mV"/>
+                            <constraint firstItem="p6V-Vt-853" firstAttribute="leading" secondItem="cpc-cJ-bbK" secondAttribute="leadingMargin" constant="64" id="rlA-0m-oIe"/>
+                            <constraint firstItem="cyQ-cX-wGY" firstAttribute="top" secondItem="n4c-3E-WB2" secondAttribute="bottom" constant="34" id="vsq-AO-H2g"/>
+                            <constraint firstItem="ue0-CN-8C6" firstAttribute="centerX" secondItem="n4c-3E-WB2" secondAttribute="centerX" id="zh2-zd-pSW"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backgroundView" destination="cpc-cJ-bbK" id="0xC-vi-d8M"/>
+                        <outlet property="done" destination="n4c-3E-WB2" id="hky-0k-Cyu"/>
+                        <outlet property="loginWithFacebook" destination="ue0-CN-8C6" id="HBW-Py-1OP"/>
+                        <outlet property="loginWithTwitter" destination="p6V-Vt-853" id="GdA-zS-gNb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8z2-j3-ZtX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-698.39999999999998" y="142.57871064467767"/>
+        </scene>
+    </scenes>
+</document>

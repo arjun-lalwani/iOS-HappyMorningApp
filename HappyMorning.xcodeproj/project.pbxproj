@@ -14,9 +14,17 @@
 		B40D54FF1F40E046006DFC1F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B40D54FD1F40E046006DFC1F /* LaunchScreen.storyboard */; };
 		B45719F41F468AE2001DB291 /* QuotesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45719F31F468AE2001DB291 /* QuotesModel.swift */; };
 		B46CF1521F4625610023EBF1 /* MyQuotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46CF1511F4625610023EBF1 /* MyQuotesViewController.swift */; };
+		B4DC6CD81F5600F7003AC4C7 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4DC6CD71F5600F7003AC4C7 /* Login.storyboard */; };
+		B4E48B411F578C1600BF7AC5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E48B401F578C1600BF7AC5 /* SettingsViewController.swift */; };
+		B4E48B431F578DAA00BF7AC5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E48B421F578DAA00BF7AC5 /* LoginViewController.swift */; };
+		B4E48B451F578DD800BF7AC5 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4E48B441F578DD800BF7AC5 /* SafariServices.framework */; };
+		B4E48B471F57946400BF7AC5 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E48B461F57946400BF7AC5 /* Alerts.swift */; };
+		B4E48B491F57984100BF7AC5 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E48B481F57984100BF7AC5 /* TabViewController.swift */; };
+		B8943730D7BC3A0AD74CC33E /* Pods_HappyMorning.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2537506D7C2E928088D00328 /* Pods_HappyMorning.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2537506D7C2E928088D00328 /* Pods_HappyMorning.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HappyMorning.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B40D54F11F40E046006DFC1F /* HappyMorning.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HappyMorning.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B40D54F41F40E046006DFC1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B40D54F61F40E046006DFC1F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -26,6 +34,14 @@
 		B40D55001F40E046006DFC1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B45719F31F468AE2001DB291 /* QuotesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuotesModel.swift; sourceTree = "<group>"; };
 		B46CF1511F4625610023EBF1 /* MyQuotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyQuotesViewController.swift; sourceTree = "<group>"; };
+		B4DC6CD71F5600F7003AC4C7 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		B4E48B401F578C1600BF7AC5 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		B4E48B421F578DAA00BF7AC5 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		B4E48B441F578DD800BF7AC5 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		B4E48B461F57946400BF7AC5 /* Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
+		B4E48B481F57984100BF7AC5 /* TabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
+		C919A35BA2F98977A2E72080 /* Pods-HappyMorning.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyMorning.release.xcconfig"; path = "Pods/Target Support Files/Pods-HappyMorning/Pods-HappyMorning.release.xcconfig"; sourceTree = "<group>"; };
+		DF4AEBFD37C487EDAEE45DE2 /* Pods-HappyMorning.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HappyMorning.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HappyMorning/Pods-HappyMorning.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +49,39 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4E48B451F578DD800BF7AC5 /* SafariServices.framework in Frameworks */,
+				B8943730D7BC3A0AD74CC33E /* Pods_HappyMorning.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		22EE1B3C086BEB8ADD77D0F5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B4E48B441F578DD800BF7AC5 /* SafariServices.framework */,
+				2537506D7C2E928088D00328 /* Pods_HappyMorning.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5797254F4431A0424713112C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DF4AEBFD37C487EDAEE45DE2 /* Pods-HappyMorning.debug.xcconfig */,
+				C919A35BA2F98977A2E72080 /* Pods-HappyMorning.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		B40D54E81F40E046006DFC1F = {
 			isa = PBXGroup;
 			children = (
 				B40D54F31F40E046006DFC1F /* HappyMorning */,
 				B40D54F21F40E046006DFC1F /* Products */,
+				5797254F4431A0424713112C /* Pods */,
+				22EE1B3C086BEB8ADD77D0F5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,11 +96,9 @@
 		B40D54F31F40E046006DFC1F /* HappyMorning */ = {
 			isa = PBXGroup;
 			children = (
-				B40D54F41F40E046006DFC1F /* AppDelegate.swift */,
-				B45719F31F468AE2001DB291 /* QuotesModel.swift */,
-				B40D54F61F40E046006DFC1F /* ViewController.swift */,
-				B46CF1511F4625610023EBF1 /* MyQuotesViewController.swift */,
-				B40D54F81F40E046006DFC1F /* Main.storyboard */,
+				B4E48B4C1F57C61300BF7AC5 /* Model */,
+				B4E48B4B1F57C5AB00BF7AC5 /* Main Screens */,
+				B4E48B4A1F57C59000BF7AC5 /* Login  */,
 				B46CF1531F4625700023EBF1 /* Supporting Files */,
 			);
 			path = HappyMorning;
@@ -71,11 +107,42 @@
 		B46CF1531F4625700023EBF1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B40D54F41F40E046006DFC1F /* AppDelegate.swift */,
 				B40D54FB1F40E046006DFC1F /* Assets.xcassets */,
 				B40D54FD1F40E046006DFC1F /* LaunchScreen.storyboard */,
 				B40D55001F40E046006DFC1F /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B4E48B4A1F57C59000BF7AC5 /* Login  */ = {
+			isa = PBXGroup;
+			children = (
+				B4E48B421F578DAA00BF7AC5 /* LoginViewController.swift */,
+				B4DC6CD71F5600F7003AC4C7 /* Login.storyboard */,
+			);
+			name = "Login ";
+			sourceTree = "<group>";
+		};
+		B4E48B4B1F57C5AB00BF7AC5 /* Main Screens */ = {
+			isa = PBXGroup;
+			children = (
+				B40D54F61F40E046006DFC1F /* ViewController.swift */,
+				B46CF1511F4625610023EBF1 /* MyQuotesViewController.swift */,
+				B4E48B401F578C1600BF7AC5 /* SettingsViewController.swift */,
+				B4E48B481F57984100BF7AC5 /* TabViewController.swift */,
+				B40D54F81F40E046006DFC1F /* Main.storyboard */,
+			);
+			name = "Main Screens";
+			sourceTree = "<group>";
+		};
+		B4E48B4C1F57C61300BF7AC5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B45719F31F468AE2001DB291 /* QuotesModel.swift */,
+				B4E48B461F57946400BF7AC5 /* Alerts.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -85,9 +152,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B40D55031F40E046006DFC1F /* Build configuration list for PBXNativeTarget "HappyMorning" */;
 			buildPhases = (
+				4611E8AE66F71E0713F73E8C /* [CP] Check Pods Manifest.lock */,
 				B40D54ED1F40E046006DFC1F /* Sources */,
 				B40D54EE1F40E046006DFC1F /* Frameworks */,
 				B40D54EF1F40E046006DFC1F /* Resources */,
+				7812442B9240DED40267E3B1 /* [CP] Embed Pods Frameworks */,
+				05B9287458ED58BF450B9DAA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -138,6 +208,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4DC6CD81F5600F7003AC4C7 /* Login.storyboard in Resources */,
 				B40D54FF1F40E046006DFC1F /* LaunchScreen.storyboard in Resources */,
 				B40D54FC1F40E046006DFC1F /* Assets.xcassets in Resources */,
 				B40D54FA1F40E046006DFC1F /* Main.storyboard in Resources */,
@@ -146,14 +217,66 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		05B9287458ED58BF450B9DAA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HappyMorning/Pods-HappyMorning-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4611E8AE66F71E0713F73E8C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7812442B9240DED40267E3B1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HappyMorning/Pods-HappyMorning-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B40D54ED1F40E046006DFC1F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4E48B491F57984100BF7AC5 /* TabViewController.swift in Sources */,
+				B4E48B431F578DAA00BF7AC5 /* LoginViewController.swift in Sources */,
 				B46CF1521F4625610023EBF1 /* MyQuotesViewController.swift in Sources */,
 				B40D54F71F40E046006DFC1F /* ViewController.swift in Sources */,
 				B45719F41F468AE2001DB291 /* QuotesModel.swift in Sources */,
+				B4E48B411F578C1600BF7AC5 /* SettingsViewController.swift in Sources */,
+				B4E48B471F57946400BF7AC5 /* Alerts.swift in Sources */,
 				B40D54F51F40E046006DFC1F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,6 +400,7 @@
 		};
 		B40D55041F40E046006DFC1F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF4AEBFD37C487EDAEE45DE2 /* Pods-HappyMorning.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = WN3QYBSRHG;
@@ -290,6 +414,7 @@
 		};
 		B40D55051F40E046006DFC1F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C919A35BA2F98977A2E72080 /* Pods-HappyMorning.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = WN3QYBSRHG;

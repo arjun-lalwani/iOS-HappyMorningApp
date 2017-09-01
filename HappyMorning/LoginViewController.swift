@@ -21,8 +21,8 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         backgroundView.backgroundColor = UIColor(patternImage: UIImage(named: "sunrise")!)
-        loginWithTwitter.adjustsFontSizeToFitWidth = true
-        loginWithFacebook.adjustsFontSizeToFitWidth = true
+//        loginWithTwitter.adjustsFontSizeToFitWidth = true
+//        loginWithFacebook.adjustsFontSizeToFitWidth = true
         loginWithTwitter.layer.cornerRadius = CGFloat(20.0)
         loginWithFacebook.layer.cornerRadius = CGFloat(20.0)
         done.layer.cornerRadius = CGFloat(20.0)

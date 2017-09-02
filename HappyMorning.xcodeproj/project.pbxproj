@@ -14,6 +14,10 @@
 		B40D54FF1F40E046006DFC1F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B40D54FD1F40E046006DFC1F /* LaunchScreen.storyboard */; };
 		B45719F41F468AE2001DB291 /* QuotesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45719F31F468AE2001DB291 /* QuotesModel.swift */; };
 		B46CF1521F4625610023EBF1 /* MyQuotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46CF1511F4625610023EBF1 /* MyQuotesViewController.swift */; };
+		B4B92E0D1F59FD520039738A /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4B92E0A1F59FD520039738A /* FBSDKCoreKit.framework */; };
+		B4B92E0E1F59FD520039738A /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4B92E0B1F59FD520039738A /* FBSDKLoginKit.framework */; };
+		B4B92E0F1F59FD520039738A /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4B92E0C1F59FD520039738A /* FBSDKShareKit.framework */; };
+		B4B92E151F5A26E30039738A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B92E141F5A26E30039738A /* User.swift */; };
 		B4DC6CD81F5600F7003AC4C7 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4DC6CD71F5600F7003AC4C7 /* Login.storyboard */; };
 		B4E48B411F578C1600BF7AC5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E48B401F578C1600BF7AC5 /* SettingsViewController.swift */; };
 		B4E48B431F578DAA00BF7AC5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4E48B421F578DAA00BF7AC5 /* LoginViewController.swift */; };
@@ -34,6 +38,10 @@
 		B40D55001F40E046006DFC1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B45719F31F468AE2001DB291 /* QuotesModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuotesModel.swift; sourceTree = "<group>"; };
 		B46CF1511F4625610023EBF1 /* MyQuotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyQuotesViewController.swift; sourceTree = "<group>"; };
+		B4B92E0A1F59FD520039738A /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../../../Downloads/FacebookSDKs-iOS-4.26.0 (2)/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
+		B4B92E0B1F59FD520039738A /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../../../Downloads/FacebookSDKs-iOS-4.26.0 (2)/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
+		B4B92E0C1F59FD520039738A /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../../Downloads/FacebookSDKs-iOS-4.26.0 (2)/FBSDKShareKit.framework"; sourceTree = "<group>"; };
+		B4B92E141F5A26E30039738A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B4DC6CD71F5600F7003AC4C7 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		B4E48B401F578C1600BF7AC5 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		B4E48B421F578DAA00BF7AC5 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -49,6 +57,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4B92E0D1F59FD520039738A /* FBSDKCoreKit.framework in Frameworks */,
+				B4B92E0E1F59FD520039738A /* FBSDKLoginKit.framework in Frameworks */,
+				B4B92E0F1F59FD520039738A /* FBSDKShareKit.framework in Frameworks */,
 				B4E48B451F578DD800BF7AC5 /* SafariServices.framework in Frameworks */,
 				B8943730D7BC3A0AD74CC33E /* Pods_HappyMorning.framework in Frameworks */,
 			);
@@ -60,6 +71,9 @@
 		22EE1B3C086BEB8ADD77D0F5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B4B92E0A1F59FD520039738A /* FBSDKCoreKit.framework */,
+				B4B92E0B1F59FD520039738A /* FBSDKLoginKit.framework */,
+				B4B92E0C1F59FD520039738A /* FBSDKShareKit.framework */,
 				B4E48B441F578DD800BF7AC5 /* SafariServices.framework */,
 				2537506D7C2E928088D00328 /* Pods_HappyMorning.framework */,
 			);
@@ -140,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				B45719F31F468AE2001DB291 /* QuotesModel.swift */,
+				B4B92E141F5A26E30039738A /* User.swift */,
 				B4E48B461F57946400BF7AC5 /* Alerts.swift */,
 			);
 			name = Model;
@@ -181,6 +196,7 @@
 					B40D54F01F40E046006DFC1F = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = WN3QYBSRHG;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -275,6 +291,7 @@
 				B46CF1521F4625610023EBF1 /* MyQuotesViewController.swift in Sources */,
 				B40D54F71F40E046006DFC1F /* ViewController.swift in Sources */,
 				B45719F41F468AE2001DB291 /* QuotesModel.swift in Sources */,
+				B4B92E151F5A26E30039738A /* User.swift in Sources */,
 				B4E48B411F578C1600BF7AC5 /* SettingsViewController.swift in Sources */,
 				B4E48B471F57946400BF7AC5 /* Alerts.swift in Sources */,
 				B40D54F51F40E046006DFC1F /* AppDelegate.swift in Sources */,
@@ -403,11 +420,13 @@
 			baseConfigurationReference = DF4AEBFD37C487EDAEE45DE2 /* Pods-HappyMorning.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = WN3QYBSRHG;
 				INFOPLIST_FILE = HappyMorning/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Arjun.HappyMorning;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -417,6 +436,7 @@
 			baseConfigurationReference = C919A35BA2F98977A2E72080 /* Pods-HappyMorning.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = WN3QYBSRHG;
 				INFOPLIST_FILE = HappyMorning/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

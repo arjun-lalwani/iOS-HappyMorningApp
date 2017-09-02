@@ -8,10 +8,14 @@
 
 import UIKit
 import TwitterKit
+import FacebookCore
+import FacebookShare
+import FacebookLogin
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    
     var window: UIWindow?
 
     // all cusomtizations performed globally on app after launching
@@ -20,13 +24,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Twitter.sharedInstance().start(withConsumerKey:"DUnmzj5I5MbWlJm72N89FiVEz", consumerSecret:"cbM8fZBjAPb90hqb3AIrkRZIKyfkrml76kXGDdKEUv7lrjO3qg")
         
-        if UserDefaults.standard.bool(forKey: "loginPageViewed") {
+        SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+//        if UserDefaults.standard.bool(forKey: "loginPageViewed") {
 //             UserDefaults.standard.setValue(false, forKey: "loginPageViewed")
-            self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mainVC")
-        } else {
-            UserDefaults.standard.setValue(true, forKey: "loginPageViewed")
+//            self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mainVC")
+//        } else {
+//            UserDefaults.standard.setValue(true, forKey: "loginPageViewed")
             self.window?.rootViewController = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "loginVC")
-        }
+//        }
     
         // Set navigation bar tint/background color (#7253A3)
         UINavigationBar.appearance().barTintColor = UIColor(red: 114.0/255, green: 83.0/255, blue: 163.0/255, alpha: 1.0)
@@ -46,7 +52,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        return Twitter.sharedInstance().application(app, open: url, options: options)
+        let twitter =  Twitter.sharedInstance().application(app, open: url, options: options)
+        let facebook = SDKApplicationDelegate.shared.application(app, open: url, options: options)
+        return twitter || facebook
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

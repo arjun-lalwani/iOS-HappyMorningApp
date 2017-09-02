@@ -8,6 +8,9 @@
 
 import UIKit
 import TwitterKit
+import FacebookShare
+import FBSDKShareKit
+import FacebookCore
 
 class ViewController: UIViewController, UITextViewDelegate {
     
@@ -46,16 +49,8 @@ class ViewController: UIViewController, UITextViewDelegate {
         textFieldView.layer.borderWidth = 0.5
         textFieldView.clipsToBounds = true
         
-        // illusion of placeholder text
-        SetToDefault(quoteTextField)
-        
-        
-        if (Twitter.sharedInstance().sessionStore.hasLoggedInUsers()) {
-            print(Twitter.sharedInstance().sessionStore.existingUserSessions())
-            print("exists")
-        } else {
-            print("no user exists")
-        }
+        // set placeholder text
+        setToDefault(quoteTextField)
     }
     
     // MARK: Actions
@@ -76,7 +71,7 @@ class ViewController: UIViewController, UITextViewDelegate {
         if socialMedia.twitterSelected {
             twitterOval.setBackgroundImage(ovals.empty, for: .normal)
             socialMedia.twitterSelected = false
-        } else {
+        }  else {
             twitterOval.setBackgroundImage(ovals.checked, for: .normal)
             socialMedia.twitterSelected = true
         }
@@ -90,16 +85,16 @@ class ViewController: UIViewController, UITextViewDelegate {
         twitterOval.setBackgroundImage(ovals.empty, for: .normal)
         
         // configure text only entered by user
-        if quoteTextField.textColor == UIColor.black {
+        if quoteTextField.textColor == UIColor.black || quoteTextField.textColor == UIColor(red: 0/255, green: 172/255, blue: 237/255, alpha: 1.0) {
             
             // add quote to shared data model
             if let newQuote = quoteTextField.text {
                 quotes.addQuote(newQuote)
-                postToTwitter(newQuote)
+                quotes.postInUserSelectedSocialMedia(newQuote, currentVC: self, postOnTwitter: socialMedia.twitterSelected, postOnFacebook: socialMedia.fbSelected)
             }
             
             // replaces textfield with placeholder
-            SetToDefault(quoteTextField)
+            setToDefault(quoteTextField)
         }
 
         // switch to default cusomtizations for initial view
@@ -110,40 +105,30 @@ class ViewController: UIViewController, UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
             textView.text = nil
-            textView.textColor = UIColor.black
+            textView.textColor = UIColor(red: 0/255, green: 172/255, blue: 237/255, alpha: 1.0)
             quoteTextField.textAlignment = .left
         }
     }
     
     // dismiss keyboard
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        if(text == "\n") {
+        if (text == "\n") {
             textView.resignFirstResponder()
             return false
         }
         return true
     }
     
-    private func SetToDefault(_ textView: UITextView) {
+    func textViewDidChange(_ textView: UITextView) {
+        if textView.text.characters.count > 140 {
+            textView.textColor = UIColor.black
+        }
+    }
+
+    // sets text to default, giving an illusion of a placeholder text
+    private func setToDefault(_ textView: UITextView) {
         textView.text = "Type your quote here 👇"
         textView.textColor = UIColor.lightGray
         textView.textAlignment = .center
-    }
-    
-    private func postToTwitter(_ newQuote: String) {
-        let composer = TWTRComposer()
-        
-        composer.setText(newQuote)
-        composer.setImage(UIImage(named: "twitterkit"))
-        
-        
-        composer.show(from: self.navigationController!, completion: {(result) -> Void in
-            print(result)
-            if (result == .done) {
-                print("Successfully composed Tweet")
-            } else {
-                print("Cancelled composing")
-            }
-        })
     }
 }

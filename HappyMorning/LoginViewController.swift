@@ -8,46 +8,52 @@
 
 import UIKit
 import TwitterKit
+import FBSDKLoginKit
+import FacebookLogin
+import FacebookCore
 
 class LoginViewController: UIViewController {
 
     @IBOutlet var backgroundView: UIView!
-
     @IBOutlet weak var loginWithTwitter: UIButton!
     @IBOutlet weak var loginWithFacebook: UIButton!
     @IBOutlet weak var done: UIButton!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         backgroundView.backgroundColor = UIColor(patternImage: UIImage(named: "sunrise")!)
-//        loginWithTwitter.adjustsFontSizeToFitWidth = true
-//        loginWithFacebook.adjustsFontSizeToFitWidth = true
         loginWithTwitter.layer.cornerRadius = CGFloat(20.0)
         loginWithFacebook.layer.cornerRadius = CGFloat(20.0)
         done.layer.cornerRadius = CGFloat(20.0)
     }
     
     @IBAction func loginWithTwitterTapped(_ sender: UIButton) {
-        Twitter.sharedInstance().logIn(completion: {(session, error) in
-            if (session != nil) {
-                print("signed in as \(String(describing: session?.userName))")
+        User.logIntoTwitter() {(success) -> Void in
+            if success {
                 self.loginWithTwitter.setTitle("Logged in with Twitter", for: .normal)
+            } else {
+                self.present(Alerts.invalidTwitterLogin(), animated: true, completion: nil)
             }
-        })
+        }
     }
 
     @IBAction func loginWithFacebookTapped(_ sender: UIButton) {
+        User.logIntoFacebook(viewFrom: self) {(success) -> Void in
+            if success {
+                self.loginWithFacebook.setTitle("Logged in with Facebook", for: .normal)
+            } else {
+                self.present(Alerts.invalidFacebookLogin(), animated: true, completion: nil)
+            }
+        }
     }
-    
+
     @IBAction func doneTapped(_ sender: UIButton) {
-        if Twitter.sharedInstance().sessionStore.hasLoggedInUsers() {
+        if User.isLoggedIntoFacebook() || User.isLoggedIntoTwitter() {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "mainVC") as UIViewController
             present(vc, animated: true, completion: nil)
         } else {
-            let alert = Alerts.addSocialMedia()
-            self.present(alert, animated: true, completion: nil)
+            self.present(Alerts.addSocialMedia(), animated: true, completion: nil)
         }
     }
 }

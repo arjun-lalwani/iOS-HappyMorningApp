@@ -21,6 +21,7 @@ class ViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var postButton: UIButton!
     @IBOutlet weak var facebookOval: UIButton!
     @IBOutlet weak var twitterOval: UIButton!
+    @IBOutlet weak var happyMorningLabel: UILabel!
     
     // MARK: Properties 
     
@@ -48,9 +49,13 @@ class ViewController: UIViewController, UITextViewDelegate {
         textFieldView.clipsToBounds = true
         
         // set placeholder text
-        setToDefault(quoteTextField)
+        customizeTextView()
         
         setDoneOnKeyboard()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        happyMorningLabel.text = "Happy Morning,\n\(PreferredName.shared.getPreferredName()!)"
     }
     
     // MARK: Actions
@@ -94,29 +99,55 @@ class ViewController: UIViewController, UITextViewDelegate {
             }
             
             // replaces textfield with placeholder
-            setToDefault(quoteTextField)
+            customizeTextView()
         }
 
         // switch to default cusomtizations for initial view
         socialMedia = (false, false)
     }
     
-    // MARK: Text View functions
+    // MARK: Text View Customizations
     
     // changes text color when user begins editing
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
             textView.text = nil
             textView.textColor = UIColor(red: 0/255, green: 172/255, blue: 237/255, alpha: 1.0)
-            quoteTextField.textAlignment = .left
+            textView.textAlignment = .left
         }
+        
+        self.animateTextField(textView: quoteTextField, up:true)
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        self.animateTextField(textView: quoteTextField, up:false)
     }
     
     func textViewDidChange(_ textView: UITextView) {
         if textView.text.characters.count > 140 {
             textView.textColor = UIColor.black
+        } else {
+            textView.textColor = UIColor(red: 0/255, green: 172/255, blue: 237/255, alpha: 1.0)
         }
     }
+    
+    func animateTextField(textView: UITextView, up: Bool) {
+        let movementDistance:CGFloat = -130
+        let movementDuration: Double = 0.3
+        
+        var movement:CGFloat = 0
+        if up {
+            movement = movementDistance
+        } else {
+            movement = -movementDistance
+        }
+        UIView.beginAnimations("animateTextField", context: nil)
+        UIView.setAnimationBeginsFromCurrentState(true)
+        UIView.setAnimationDuration(movementDuration)
+        self.view.frame = self.view.frame.offsetBy(dx: 0, dy: movement)
+        UIView.commitAnimations()
+    }
+    
 
     func setDoneOnKeyboard() {
         let keyboardToolbar = UIToolbar()
@@ -134,9 +165,9 @@ class ViewController: UIViewController, UITextViewDelegate {
     // MARK: Private functions
     
     // sets text to default, giving an illusion of a placeholder text
-    private func setToDefault(_ textView: UITextView) {
-        textView.text = "Type your quote here 👇"
-        textView.textColor = UIColor.lightGray
-        textView.textAlignment = .center
+    private func customizeTextView() {
+        quoteTextField.text = "Type your quote here 👇"
+        quoteTextField.textColor = UIColor.lightGray
+        quoteTextField.textAlignment = .center
     }
 }

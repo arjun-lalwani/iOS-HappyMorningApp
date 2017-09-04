@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Twitter.sharedInstance().start(withConsumerKey:"DUnmzj5I5MbWlJm72N89FiVEz", consumerSecret:"cbM8fZBjAPb90hqb3AIrkRZIKyfkrml76kXGDdKEUv7lrjO3qg")
         
         SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
-        
+
 //        if UserDefaults.standard.bool(forKey: "loginPageViewed") {
 //             UserDefaults.standard.setValue(false, forKey: "loginPageViewed")
 //            self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "mainVC")

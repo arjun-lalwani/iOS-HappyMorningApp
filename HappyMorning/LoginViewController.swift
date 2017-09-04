@@ -49,9 +49,8 @@ class LoginViewController: UIViewController {
 
     @IBAction func doneTapped(_ sender: UIButton) {
         if User.isLoggedIntoFacebook() || User.isLoggedIntoTwitter() {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "mainVC") as UIViewController
-            present(vc, animated: true, completion: nil)
+            let alert = Alerts.setPreferredName(sender: self)
+            self.present(alert, animated: true, completion: nil)
         } else {
             self.present(Alerts.addSocialMedia(), animated: true, completion: nil)
         }

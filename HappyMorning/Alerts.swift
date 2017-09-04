@@ -80,4 +80,41 @@ struct Alerts {
         alert.addAction(cancel)
         return alert
     }
+    
+    static func changePreferredName() -> UIAlertController {
+        let alert = UIAlertController(title: "New Preferred Name!", message: "Enter your new preferred name", preferredStyle: .alert)
+        
+        let saveAction = UIAlertAction(title: "Save", style: .default, handler: { al -> Void in
+            
+            if let name = alert.textFields?[0].text {
+                if name.characters.count > 0 {
+                    PreferredName.shared.setPreferredName(name)
+                }
+            }
+        })
+        
+        alert.addTextField(configurationHandler: nil)
+        alert.addAction(saveAction)
+        return alert
+    }
+    
+    static func setPreferredName(sender: UIViewController) -> UIAlertController {
+        let alert = UIAlertController(title: "One Last Thing!", message: "What name would you prefer to be referred by?", preferredStyle: .alert)
+        
+        let saveAction = UIAlertAction(title: "Save", style: .default, handler: { al -> Void in
+            
+            if let name = alert.textFields?[0].text {
+                if name.characters.count > 0 {
+                    PreferredName.shared.setPreferredName(name)
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let vc = storyboard.instantiateViewController(withIdentifier: "mainVC") as UIViewController
+                    sender.present(vc, animated: true, completion: nil)
+                }
+            }
+        })
+        
+        alert.addTextField(configurationHandler: nil)
+        alert.addAction(saveAction)
+        return alert
+    }
 }

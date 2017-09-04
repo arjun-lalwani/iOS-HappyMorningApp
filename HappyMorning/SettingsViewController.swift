@@ -15,6 +15,7 @@ class SettingsViewController: UIViewController {
     
     @IBOutlet weak var twitterLoginStatusButton: UIButton!
     @IBOutlet weak var facebookLoginStatusButton: UIButton!
+    @IBOutlet weak var changePreferredName: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,7 @@ class SettingsViewController: UIViewController {
         
         twitterLoginStatusButton.layer.cornerRadius = CGFloat(20.0)
         facebookLoginStatusButton.layer.cornerRadius = CGFloat(20.0)
+        changePreferredName.layer.cornerRadius = CGFloat(20.0)
         
         setTitlesForSocialMediaButtons()
     }
@@ -62,6 +64,11 @@ class SettingsViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    @IBAction func changePreferredName(_ sender: UIButton) {
+        let alert = Alerts.changePreferredName()
+        self.present(alert, animated: true, completion: nil)
     }
     
     // customize titles based on user logged in

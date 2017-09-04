@@ -56,3 +56,18 @@ class User {
         }
     }
 }
+
+final class PreferredName {
+    private var preferredName: String?
+    
+    func setPreferredName(_ name: String) {
+        preferredName = name
+    }
+    
+    func getPreferredName() -> String? {
+        return preferredName
+    }
+    
+    static let shared = PreferredName()
+}
+

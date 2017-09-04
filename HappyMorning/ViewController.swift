@@ -25,10 +25,10 @@ class ViewController: UIViewController, UITextViewDelegate {
     // MARK: Properties 
     
     // default initializing properties
-    var socialMedia = (fbSelected: false, twitterSelected: false)
-    var ovals = (empty: UIImage(named: "empty-oval"), checked: UIImage(named: "check-mark"))
+    private var socialMedia = (fbSelected: false, twitterSelected: false)
+    private var ovals = (empty: UIImage(named: "empty-oval"), checked: UIImage(named: "check-mark"))
     
-    // model is protected, so no one can create a new instance of this class and access the quotes using the '.' syntax
+    // private instance of model to add encapsulation to class
     private var quotes = QuotesAPI.shared
     
     // MARK: Life Cycle
@@ -40,9 +40,7 @@ class ViewController: UIViewController, UITextViewDelegate {
     
         // turns off default alpha value set by navigation controller on navigation bar
         self.navigationController?.navigationBar.isTranslucent = false
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
+        
         // adding customizations
         postButton.layer.cornerRadius = 20.0
         textFieldView.layer.cornerRadius = 20.0
@@ -51,6 +49,8 @@ class ViewController: UIViewController, UITextViewDelegate {
         
         // set placeholder text
         setToDefault(quoteTextField)
+        
+        setDoneOnKeyboard()
     }
     
     // MARK: Actions
@@ -101,6 +101,8 @@ class ViewController: UIViewController, UITextViewDelegate {
         socialMedia = (false, false)
     }
     
+    // MARK: Text View functions
+    
     // changes text color when user begins editing
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
@@ -110,21 +112,27 @@ class ViewController: UIViewController, UITextViewDelegate {
         }
     }
     
-    // dismiss keyboard
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        if (text == "\n") {
-            textView.resignFirstResponder()
-            return false
-        }
-        return true
-    }
-    
     func textViewDidChange(_ textView: UITextView) {
         if textView.text.characters.count > 140 {
             textView.textColor = UIColor.black
         }
     }
 
+    func setDoneOnKeyboard() {
+        let keyboardToolbar = UIToolbar()
+        keyboardToolbar.sizeToFit()
+        let flexBarButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneBarButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(UIInputViewController.dismissKeyboard))
+        keyboardToolbar.items = [flexBarButton, doneBarButton]
+        self.quoteTextField.inputAccessoryView = keyboardToolbar
+    }
+    
+    func dismissKeyboard() {
+        self.quoteTextField.resignFirstResponder()
+    }
+
+    // MARK: Private functions
+    
     // sets text to default, giving an illusion of a placeholder text
     private func setToDefault(_ textView: UITextView) {
         textView.text = "Type your quote here 👇"

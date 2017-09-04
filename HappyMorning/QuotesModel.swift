@@ -11,43 +11,52 @@ import TwitterKit
 import FBSDKLoginKit
 import FacebookCore
 
-// final - causes compile time error if anyone tries to subclass from QuotesAPI or override it.
 final class QuotesAPI {
     
-    // only 1 instance of the class is ever created and can be accessed from anywhere.
+    // creates a singleton
     static let shared = QuotesAPI()
-
-    // adds quote to local storage
+    
+    private var quotesStorage = [String]()
+    
+    /**
+        Stores quote into a list of quotes
+        
+        - Parameter quote: gvien quote is appended to list of quotes
+     */
     func addQuote(_ quote: String) {
-        if var allQuotes = UserDefaults.standard.stringArray(forKey: "allQuotes") {
-            allQuotes.append(quote)
-            UserDefaults.standard.set(allQuotes, forKey: "allQuotes")
-        } else {
-            UserDefaults.standard.set([quote], forKey: "allQuotes")
-        }
+        quotesStorage.append(quote)
     }
     
-    // deletes quote from local storage
+    /** 
+        Deletes quote from list of quotes
+     
+        - Parameter index: removes quote from requested index of cell
+     */
     func deleteQuote(at index: Int) {
-        if var allQuotes = UserDefaults.standard.stringArray(forKey: "allQuotes") {
-            allQuotes.remove(at: index)
-            UserDefaults.standard.set(allQuotes, forKey: "allQuotes")
-        }
+        quotesStorage.remove(at: index)
     }
 
-    // returns all quotes from local storage, if no quotes found, returns nil
-    func getAllQuotes() -> [String]? {
-        if let quotes = UserDefaults.standard.stringArray(forKey: "allQuotes") {
-            return quotes
-        }
-        return nil
+    /**
+        Returns a list of all quotes
+     
+        - Returns: List of all quotes stored internally
+    */
+    func getAllQuotes() -> [String] {
+        let quoteStorageCopy = quotesStorage
+        return quoteStorageCopy
     }
     
-    // clears all quotes in local storage
+    /**
+        Deletes all quotes stored internally
+    */
     func deleteAllQuotes() {
-        UserDefaults.standard.removeObject(forKey: "allQuotes")
+        quotesStorage.removeAll()
     }
     
+    /**
+     
+ 
+    */
     func postInUserSelectedSocialMedia(_ quote: String, currentVC: UIViewController, postOnTwitter: Bool, postOnFacebook: Bool)  {
         if quote.characters.count > 140 {
             currentVC.present(Alerts.twitterCharacterCountExceeded(), animated: true, completion: nil)

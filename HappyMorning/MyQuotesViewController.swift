@@ -53,10 +53,7 @@ class MyQuotesViewController: UIViewController, UITableViewDelegate, UITableView
     
     // returns number of rows that can be selected
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let numberOfQuotes = quotes.getAllQuotes() {
-            return numberOfQuotes.count
-        }
-        return 0
+        return quotes.getAllQuotes().count
     }
     
     // returns each table view cell filled with data from model
@@ -69,9 +66,7 @@ class MyQuotesViewController: UIViewController, UITableViewDelegate, UITableView
         cell.selectionStyle = UITableViewCellSelectionStyle.none
         
         // get quote from user defaults to fill cell with appropriate data
-        if let quote: [String] = quotes.getAllQuotes() {
-            cell.textLabel?.text = quote[indexPath.row]
-        }
+        cell.textLabel?.text = quotes.getAllQuotes()[indexPath.row]
         
         return cell
     }

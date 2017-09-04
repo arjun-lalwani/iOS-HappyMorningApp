@@ -12,7 +12,7 @@ import FBSDKLoginKit
 import FacebookLogin
 
 class SettingsViewController: UIViewController {
-
+    
     @IBOutlet weak var twitterLoginStatusButton: UIButton!
     @IBOutlet weak var facebookLoginStatusButton: UIButton!
     
@@ -27,7 +27,7 @@ class SettingsViewController: UIViewController {
         
         setTitlesForSocialMediaButtons()
     }
-
+    
     // If user logged into Twitter, log out option available
     // If user logged out of Twitter, log into option available
     @IBAction func twitterButtonTapped(_ sender: UIButton) {
@@ -36,11 +36,11 @@ class SettingsViewController: UIViewController {
             self.present(Alerts.logOutOfTwitter(), animated: true, completion: nil)
             twitterLoginStatusButton.setTitle("Log in with Twitter", for: .normal)
         } else {
-            User.logIntoTwitter() {(success) -> Void in
+            User.logIntoTwitter() {[weak weakSelf = self](success) -> Void in
                 if success {
-                   self.twitterLoginStatusButton.setTitle("Log out of Twitter", for: .normal)
+                    weakSelf?.twitterLoginStatusButton.setTitle("Log out of Twitter", for: .normal)
                 } else {
-                    self.present(Alerts.invalidTwitterLogin(), animated: true, completion: nil)
+                    weakSelf?.present(Alerts.invalidTwitterLogin(), animated: true, completion: nil)
                 }
             }
         }
@@ -54,11 +54,11 @@ class SettingsViewController: UIViewController {
             self.present(Alerts.logOutOfFacebook(), animated: true, completion: nil)
             facebookLoginStatusButton.setTitle("Log in with Facebook", for: .normal)
         } else {
-            User.logIntoFacebook(viewFrom: self) {(success) -> Void in
+            User.logIntoFacebook(viewFrom: self) {[weak weakSelf = self](success) -> Void in
                 if success {
-                    self.facebookLoginStatusButton.setTitle("Log in with Facebook", for: .normal)
+                  //  weakSelf?.facebookLoginStatusButton.setTitle("Log out of Facebook", for: .normal)
                 } else {
-                    self.present(Alerts.invalidFacebookLogin(), animated: true, completion: nil)
+                    weakSelf?.present(Alerts.invalidFacebookLogin(), animated: true, completion: nil)
                 }
             }
         }

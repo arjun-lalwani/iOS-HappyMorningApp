@@ -29,7 +29,7 @@ class ViewController: UIViewController, UITextViewDelegate {
     private var socialMedia = (fbSelected: false, twitterSelected: false)
     private var ovals = (empty: UIImage(named: "empty-oval"), checked: UIImage(named: "check-mark"))
     
-    // private instance of model to add encapsulation to class
+    // private instance of model
     private var quotes = QuotesAPI.shared
     
     // MARK: Life Cycle
@@ -48,19 +48,21 @@ class ViewController: UIViewController, UITextViewDelegate {
         textFieldView.layer.borderWidth = 0.5
         textFieldView.clipsToBounds = true
         
-        // set placeholder text
-        customizeTextView()
-        
         setDoneOnKeyboard()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         happyMorningLabel.text = "Happy Morning,\n\(PreferredName.shared.getPreferredName()!)"
+        
+        // set placeholder text if text Field is blank
+        if (quoteTextField.textColor != UIColor.twitterBlue && quoteTextField.textColor != UIColor.black) {
+            customizeTextView()
+        }
     }
     
     // MARK: Actions
 
-    // toggles facebook check box icon
+    // toggles facebook check box icon on selection
     @IBAction func socialMediaSelected(_ sender: UIButton) {
         if socialMedia.fbSelected {
             facebookOval.setBackgroundImage(ovals.empty, for: .normal)
@@ -71,7 +73,7 @@ class ViewController: UIViewController, UITextViewDelegate {
         }
     }
     
-    // toggles twitter check box icon
+    // toggles twitter check box icon on selection
     @IBAction func socialMediaTwitterSelected(_ sender: UIButton) {
         if socialMedia.twitterSelected {
             twitterOval.setBackgroundImage(ovals.empty, for: .normal)
@@ -82,7 +84,7 @@ class ViewController: UIViewController, UITextViewDelegate {
         }
     }
     
-    // renders to default view and adds new quote to the model
+    // posts quote in text field to requested social media services and reloads screen to default customizations
     @IBAction func postButton(_ sender: UIButton) {
         
         // switch to default cusomtizations for initial view
@@ -90,47 +92,47 @@ class ViewController: UIViewController, UITextViewDelegate {
         twitterOval.setBackgroundImage(ovals.empty, for: .normal)
         
         // configure text only entered by user
-        if quoteTextField.textColor == UIColor.black || quoteTextField.textColor == UIColor(red: 0/255, green: 172/255, blue: 237/255, alpha: 1.0) {
+        if quoteTextField.textColor == UIColor.black || quoteTextField.textColor == UIColor.twitterBlue {
             
-            // add quote to shared data model
             if let newQuote = quoteTextField.text {
                 quotes.addQuote(newQuote)
                 quotes.postInUserSelectedSocialMedia(newQuote, currentVC: self, postOnTwitter: socialMedia.twitterSelected, postOnFacebook: socialMedia.fbSelected)
             }
             
-            // replaces textfield with placeholder
+            // add placeholder text
             customizeTextView()
         }
-
-        // switch to default cusomtizations for initial view
+        
         socialMedia = (false, false)
     }
     
-    // MARK: Text View Customizations
+    // MARK: Text View Customizations 
     
     // changes text color when user begins editing
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
             textView.text = nil
-            textView.textColor = UIColor(red: 0/255, green: 172/255, blue: 237/255, alpha: 1.0)
+            textView.textColor = UIColor.twitterBlue
             textView.textAlignment = .left
         }
-        
         self.animateTextField(textView: quoteTextField, up:true)
     }
     
+    // shifts frame down after dismissing keyboard
     func textViewDidEndEditing(_ textView: UITextView) {
         self.animateTextField(textView: quoteTextField, up:false)
     }
     
+    // configures text color to indicate twitter post status
     func textViewDidChange(_ textView: UITextView) {
         if textView.text.characters.count > 140 {
             textView.textColor = UIColor.black
         } else {
-            textView.textColor = UIColor(red: 0/255, green: 172/255, blue: 237/255, alpha: 1.0)
+            textView.textColor = UIColor.twitterBlue
         }
     }
     
+    // shifts super views frame up or down as keyboard appears
     func animateTextField(textView: UITextView, up: Bool) {
         let movementDistance:CGFloat = -130
         let movementDuration: Double = 0.3
@@ -148,7 +150,7 @@ class ViewController: UIViewController, UITextViewDelegate {
         UIView.commitAnimations()
     }
     
-
+    // adds toolbar with done option to keyboard
     func setDoneOnKeyboard() {
         let keyboardToolbar = UIToolbar()
         keyboardToolbar.sizeToFit()
@@ -169,5 +171,12 @@ class ViewController: UIViewController, UITextViewDelegate {
         quoteTextField.text = "Type your quote here 👇"
         quoteTextField.textColor = UIColor.lightGray
         quoteTextField.textAlignment = .center
+    }
+}
+
+// adds custom twitter blue color
+extension UIColor {
+    public class var twitterBlue: UIColor {
+        return UIColor(red: 0/255, green: 172/255, blue: 237/255, alpha: 1.0)
     }
 }

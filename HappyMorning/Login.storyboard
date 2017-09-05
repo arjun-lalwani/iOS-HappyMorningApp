@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="hqQ-pm-UMK">
-    <device id="retina5_5" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -19,11 +19,11 @@
                         <viewControllerLayoutGuide type="bottom" id="cyQ-cX-wGY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="cpc-cJ-bbK">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" alpha="0.84999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p6V-Vt-853">
-                                <rect key="frame" x="77" y="500" width="260" height="50"/>
+                                <rect key="frame" x="73" y="431" width="229" height="50"/>
                                 <color key="backgroundColor" red="0.18432764708995819" green="0.43445083498954773" blue="0.79614293575286865" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="hKY-6v-8eg"/>
@@ -37,7 +37,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Happy Morning" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zs6-BS-Lfd">
-                                <rect key="frame" x="20" y="55" width="374" height="84"/>
+                                <rect key="frame" x="16" y="55" width="343" height="84"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="84" id="JWh-4Z-OHL"/>
                                 </constraints>
@@ -46,7 +46,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post all your favorite morning quotes  from one place" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h9O-zT-Vrb">
-                                <rect key="frame" x="20" y="147" width="374" height="73"/>
+                                <rect key="frame" x="16" y="147" width="343" height="73"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="73" id="bZX-7C-C9Z"/>
                                 </constraints>
@@ -55,7 +55,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="For the best experience, log in with all your favorite platforms" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wFb-JU-CrS">
-                                <rect key="frame" x="20" y="415" width="374" height="64"/>
+                                <rect key="frame" x="16" y="346" width="343" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="i4k-A5-fOj"/>
                                 </constraints>
@@ -64,7 +64,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" alpha="0.84999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n4c-3E-WB2">
-                                <rect key="frame" x="160" y="662" width="94" height="40"/>
+                                <rect key="frame" x="140.5" y="593" width="94" height="40"/>
                                 <color key="backgroundColor" red="0.23755814135074615" green="0.45042321085929871" blue="0.71771448850631714" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="94" id="EU6-27-77Z"/>
@@ -79,7 +79,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.84999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ue0-CN-8C6">
-                                <rect key="frame" x="77" y="576" width="260" height="50"/>
+                                <rect key="frame" x="73" y="507" width="229" height="50"/>
                                 <color key="backgroundColor" red="0.24148915708065033" green="0.45433482527732849" blue="0.72555691003799438" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Ozq-Ib-lGB"/>

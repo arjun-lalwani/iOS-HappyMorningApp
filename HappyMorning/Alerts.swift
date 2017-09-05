@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct Alerts {
+struct LoginAlerts {
     
     static func invalidTwitterLogin() -> UIAlertController {
         let alert = UIAlertController(title: "Twitter Login Failed", message: "Could not authorize your account successfully to twitter", preferredStyle: .alert)
@@ -80,7 +80,10 @@ struct Alerts {
         alert.addAction(cancel)
         return alert
     }
-    
+}
+
+class UserAlerts {
+
     static func changePreferredName() -> UIAlertController {
         let alert = UIAlertController(title: "New Preferred Name!", message: "Enter your new preferred name", preferredStyle: .alert)
         

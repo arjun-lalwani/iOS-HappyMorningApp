@@ -14,6 +14,7 @@ class MyQuotesViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var clearButton: UIBarButtonItem!
     
+    // MARK: Properties
     private var quotes: QuotesAPI!
 
     // MARK: Life cycle
@@ -35,21 +36,20 @@ class MyQuotesViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        // contents of the table are reset before view appears as model data may be mutated
+         // contents of the model maybe updated
         self.tableView.reloadData()
     }
     
     
     // MARK: Actions
+    
+    // deletes all quotes internally, and dynamically updates UI
     @IBAction func clearButtonPressed(_ sender: UIBarButtonItem) {
-        // clears model
         quotes.deleteAllQuotes()
-        
-        // updates view dynamically
         self.tableView.reloadData()
     }
     
-    // MARK: UITableViewController
+    // MARK: Table View customizations
     
     // returns number of rows that can be selected
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -59,13 +59,10 @@ class MyQuotesViewController: UIViewController, UITableViewDelegate, UITableView
     // returns each table view cell filled with data from model
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        // deqeue reusable cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "quotesCell", for: indexPath)
         
-        // disables selection of cell
+        // configure cell
         cell.selectionStyle = UITableViewCellSelectionStyle.none
-        
-        // get quote from user defaults to fill cell with appropriate data
         cell.textLabel?.text = quotes.getAllQuotes()[indexPath.row]
         
         return cell
@@ -74,11 +71,7 @@ class MyQuotesViewController: UIViewController, UITableViewDelegate, UITableView
     // adds delete functionality for table view
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            
-            // updates model
             quotes.deleteQuote(at: indexPath.row)
-            
-            // updates view dynamically
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
         }
     }

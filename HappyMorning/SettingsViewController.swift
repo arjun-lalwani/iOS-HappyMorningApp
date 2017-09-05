@@ -13,16 +13,19 @@ import FacebookLogin
 
 class SettingsViewController: UIViewController {
     
+    // MARK: Outlets
     @IBOutlet weak var twitterLoginStatusButton: UIButton!
     @IBOutlet weak var facebookLoginStatusButton: UIButton!
     @IBOutlet weak var changePreferredName: UIButton!
     
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // turns off default alpha value set by navigation controller on navigation bar
         self.navigationController?.navigationBar.isTranslucent = false
         
+        // adds default customization to buttons
         twitterLoginStatusButton.layer.cornerRadius = CGFloat(20.0)
         facebookLoginStatusButton.layer.cornerRadius = CGFloat(20.0)
         changePreferredName.layer.cornerRadius = CGFloat(20.0)
@@ -30,48 +33,51 @@ class SettingsViewController: UIViewController {
         setTitlesForSocialMediaButtons()
     }
     
-    // If user logged into Twitter, log out option available
-    // If user logged out of Twitter, log into option available
+    // MARK: Actions
+    
+    // Toggles between allowing users to log in and log out of Twitter
     @IBAction func twitterButtonTapped(_ sender: UIButton) {
         if let userId = User.getTwitterUserId() {
             User.logOutOfTwitter(userId)
-            self.present(Alerts.logOutOfTwitter(), animated: true, completion: nil)
+            self.present(LoginAlerts.logOutOfTwitter(), animated: true, completion: nil)
             twitterLoginStatusButton.setTitle("Log in with Twitter", for: .normal)
         } else {
             User.logIntoTwitter() {[weak weakSelf = self](success) -> Void in
                 if success {
                     weakSelf?.twitterLoginStatusButton.setTitle("Log out of Twitter", for: .normal)
                 } else {
-                    weakSelf?.present(Alerts.invalidTwitterLogin(), animated: true, completion: nil)
+                    weakSelf?.present(LoginAlerts.invalidTwitterLogin(), animated: true, completion: nil)
                 }
             }
         }
     }
-    
-    // If user logged into Facebook, log out option available
-    // If user logged out of Facebook, log into option available
+
+    // Toggles between allowing users to log in and log out of Facebook
     @IBAction func facebookButtonTapped(_ sender: UIButton) {
         if User.isLoggedIntoFacebook() {
             User.logOutOfFacebook()
-            self.present(Alerts.logOutOfFacebook(), animated: true, completion: nil)
+            self.present(LoginAlerts.logOutOfFacebook(), animated: true, completion: nil)
             facebookLoginStatusButton.setTitle("Log in with Facebook", for: .normal)
         } else {
             User.logIntoFacebook(viewFrom: self) {[weak weakSelf = self](success) -> Void in
                 if success {
-                  //  weakSelf?.facebookLoginStatusButton.setTitle("Log out of Facebook", for: .normal)
+                    weakSelf?.facebookLoginStatusButton.setTitle("Log out of Facebook", for: .normal)
                 } else {
-                    weakSelf?.present(Alerts.invalidFacebookLogin(), animated: true, completion: nil)
+                    weakSelf?.present(LoginAlerts.invalidFacebookLogin(), animated: true, completion: nil)
                 }
             }
         }
     }
     
+    // Allows user to configure preferred name
     @IBAction func changePreferredName(_ sender: UIButton) {
-        let alert = Alerts.changePreferredName()
+        let alert = UserAlerts.changePreferredName()
         self.present(alert, animated: true, completion: nil)
     }
     
-    // customize titles based on user logged in
+    // MARK: Private functions
+    
+    // Customize titles based on user logged in
     private func setTitlesForSocialMediaButtons() {
         if User.isLoggedIntoTwitter() {
             twitterLoginStatusButton.setTitle("Log out of Twitter", for: .normal)

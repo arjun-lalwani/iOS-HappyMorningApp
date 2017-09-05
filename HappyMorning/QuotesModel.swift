@@ -59,7 +59,7 @@ final class QuotesAPI {
     */
     func postInUserSelectedSocialMedia(_ quote: String, currentVC: UIViewController, postOnTwitter: Bool, postOnFacebook: Bool)  {
         if quote.characters.count > 140 {
-            currentVC.present(Alerts.twitterCharacterCountExceeded(), animated: true, completion: nil)
+            currentVC.present(LoginAlerts.twitterCharacterCountExceeded(), animated: true, completion: nil)
             if postOnFacebook {
                 postToFacebook(quote, vc: currentVC)
             }
@@ -82,14 +82,14 @@ final class QuotesAPI {
                 FBSDKGraphRequest.init(graphPath: "me/feed", parameters: ["message": quote], httpMethod: "POST").start(completionHandler: { (connection, result, error) -> Void in
                     if let error = error {
                         debugPrint("Error: \(error)")
-                        vc.present(Alerts.unableToPostToFacebook(), animated: true, completion: nil)
+                        vc.present(LoginAlerts.unableToPostToFacebook(), animated: true, completion: nil)
                     } else if connection == nil {
-                        vc.present(Alerts.unableToPostToFacebook(), animated: true, completion: nil)
+                        vc.present(LoginAlerts.unableToPostToFacebook(), animated: true, completion: nil)
                     }
                 })
             }
         } else {
-            vc.present(Alerts.notLoggedIntoFacebook(), animated: true, completion: nil)
+            vc.present(LoginAlerts.notLoggedIntoFacebook(), animated: true, completion: nil)
         }
     }
     
@@ -105,12 +105,12 @@ final class QuotesAPI {
                 let request = client.urlRequest(withMethod: "POST", url: statusesShowEndpoint, parameters: params, error: &clientError)
                 client.sendTwitterRequest(request) { (response, data, connectionError) -> Void in
                     if (connectionError != nil) {
-                        vc.present(Alerts.unableToPostToTwitter(), animated: true, completion: nil)
+                        vc.present(LoginAlerts.unableToPostToTwitter(), animated: true, completion: nil)
                     }
                 }
             }
         } else {
-            vc.present(Alerts.notLoggedIntoTwitter(), animated: true, completion: nil)
+            vc.present(LoginAlerts.notLoggedIntoTwitter(), animated: true, completion: nil)
         }
     }
 }

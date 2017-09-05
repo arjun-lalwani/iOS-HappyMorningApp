@@ -54,10 +54,14 @@ final class QuotesAPI {
     }
     
     /**
+        Posts in selected social media by user
      
- 
-    */
-    func postInUserSelectedSocialMedia(_ quote: String, currentVC: UIViewController, postOnTwitter: Bool, postOnFacebook: Bool)  {
+        - Parameter quote: Quote to be posted
+        - Parameter currentVC: View Controller to post any alerts
+        - Parameter postOnTwitter: True if quote should be posted to Twitter
+        - Parameter postOnFacebook: True if quote shuold be posted to Facebook
+     */
+    func postInUserSelectedSocialMedia(_ quote: String, currentVC: UIViewController, postOnTwitter: Bool, postOnFacebook: Bool) {
         if quote.characters.count > 140 {
             currentVC.present(LoginAlerts.twitterCharacterCountExceeded(), animated: true, completion: nil)
             if postOnFacebook {
@@ -85,7 +89,7 @@ final class QuotesAPI {
                         vc.present(LoginAlerts.unableToPostToFacebook(), animated: true, completion: nil)
                     } else if connection == nil {
                         vc.present(LoginAlerts.unableToPostToFacebook(), animated: true, completion: nil)
-                    }
+                    } 
                 })
             }
         } else {

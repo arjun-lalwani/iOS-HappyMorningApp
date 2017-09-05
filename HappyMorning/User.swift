@@ -48,12 +48,14 @@ class User {
         let login: FBSDKLoginManager = FBSDKLoginManager()
         
         login.logIn(withPublishPermissions: ["publish_actions"], from: viewFrom) { (result, error) in
-            if (error != nil) {
-                completion(false)
-            } else if (result?.grantedPermissions.contains("publish_actions"))! {
-                completion(true)
+            if let cancelled = result?.isCancelled {
+                if cancelled || error != nil{
+                    completion(false)
+                } else {
+                    completion(true)
+                }
             }
-        }
+        } 
     }
 }
 

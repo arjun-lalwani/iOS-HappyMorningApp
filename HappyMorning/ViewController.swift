@@ -17,8 +17,19 @@ class ViewController: UIViewController, UITextViewDelegate {
     // MARK: Outlets
     @IBOutlet weak var navBar: UINavigationItem!
     @IBOutlet weak var quoteTextField: UITextView!
-    @IBOutlet weak var textFieldView: UIView!
-    @IBOutlet weak var postButton: UIButton!
+    @IBOutlet weak var textFieldView: UIView! {
+        didSet {
+            textFieldView.layer.cornerRadius = 20.0
+            textFieldView.layer.borderWidth = 0.5
+            textFieldView.clipsToBounds = true
+        }
+    }
+    @IBOutlet weak var postButton: UIButton! {
+        didSet {
+            postButton.layer.cornerRadius = 20.0
+            postButton.setTitle("SAVE", for: .normal)
+        }
+    }
     @IBOutlet weak var facebookOval: UIButton!
     @IBOutlet weak var twitterOval: UIButton!
     @IBOutlet weak var happyMorningLabel: UILabel!
@@ -36,23 +47,17 @@ class ViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // set default properties to initialize
         quoteTextField.delegate = self
     
         // turns off default alpha value set by navigation controller on navigation bar
         self.navigationController?.navigationBar.isTranslucent = false
-        
-        // adding customizations
-        postButton.layer.cornerRadius = 20.0
-        textFieldView.layer.cornerRadius = 20.0
-        textFieldView.layer.borderWidth = 0.5
-        textFieldView.clipsToBounds = true
-        
+    
         setDoneOnKeyboard()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         happyMorningLabel.text = "Happy Morning,\n\(PreferredName.shared.getPreferredName()!)"
+        configurePostButton()
         
         // set placeholder text if text Field is blank
         if (quoteTextField.textColor != UIColor.twitterBlue && quoteTextField.textColor != UIColor.black) {
@@ -71,6 +76,7 @@ class ViewController: UIViewController, UITextViewDelegate {
             facebookOval.setBackgroundImage(ovals.checked, for: .normal)
             socialMedia.fbSelected = true
         }
+        configurePostButton()
     }
     
     // toggles twitter check box icon on selection
@@ -82,6 +88,7 @@ class ViewController: UIViewController, UITextViewDelegate {
             twitterOval.setBackgroundImage(ovals.checked, for: .normal)
             socialMedia.twitterSelected = true
         }
+        configurePostButton()
     }
     
     // posts quote in text field to requested social media services and reloads screen to default customizations
@@ -134,10 +141,10 @@ class ViewController: UIViewController, UITextViewDelegate {
     
     // shifts super views frame up or down as keyboard appears
     func animateTextField(textView: UITextView, up: Bool) {
-        let movementDistance:CGFloat = -130
+        let movementDistance: CGFloat = -130
         let movementDuration: Double = 0.3
         
-        var movement:CGFloat = 0
+        var movement: CGFloat = 0
         if up {
             movement = movementDistance
         } else {
@@ -171,6 +178,14 @@ class ViewController: UIViewController, UITextViewDelegate {
         quoteTextField.text = "Type your quote here 👇"
         quoteTextField.textColor = UIColor.lightGray
         quoteTextField.textAlignment = .center
+    }
+    
+    private func configurePostButton() {
+        if socialMedia.fbSelected || socialMedia.twitterSelected {
+            postButton.setTitle("POST", for: .normal)
+        } else {
+            postButton.setTitle("SAVE", for: .normal)
+        }
     }
 }
 

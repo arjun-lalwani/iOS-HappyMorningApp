@@ -15,7 +15,8 @@ class MyQuotesViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var clearButton: UIBarButtonItem!
     
     // MARK: Properties
-    private var quotes: QuotesAPI!
+    private var quotes: QuotesAPI = QuotesAPI.shared
+    private var selectedQuote: String?
 
     // MARK: Life cycle
     override func viewDidLoad() {
@@ -23,8 +24,6 @@ class MyQuotesViewController: UIViewController, UITableViewDelegate, UITableView
 
         tableView.delegate = self
         tableView.dataSource = self
-
-        quotes = QuotesAPI.shared
         
         // turns off default alpha value set by navigation controller on navigation bar
         self.navigationController?.navigationBar.isTranslucent = false
@@ -68,11 +67,23 @@ class MyQuotesViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedQuote = quotes.getAllQuotes()[indexPath.row]
+        self.performSegue(withIdentifier: "quoteDetailSegue", sender: self)
+    }
+    
     // adds delete functionality for table view
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             quotes.deleteQuote(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "quoteDetailSegue" {
+            let quoteDetailVC = segue.destination as? QuoteDetailViewController
+            quoteDetailVC?.quoteToPresent = selectedQuote!
         }
     }
 }

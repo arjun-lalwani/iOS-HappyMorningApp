@@ -11,6 +11,12 @@ import UIKit
 class QuoteDetailViewController: UIViewController {
 
     @IBOutlet weak var quote: UILabel!
+    @IBOutlet weak var postButton: UIButton! {
+        didSet {
+            postButton.layer.cornerRadius = 20.0
+        }
+    }
+    
     var quoteToPresent: String?
     
     override func viewDidLoad() {

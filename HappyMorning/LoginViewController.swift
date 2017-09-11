@@ -15,20 +15,25 @@ import FacebookCore
 class LoginViewController: UIViewController {
 
     // MARK: Outlets
-    @IBOutlet var backgroundView: UIView!
-    @IBOutlet weak var loginWithTwitter: UIButton!
-    @IBOutlet weak var loginWithFacebook: UIButton!
-    @IBOutlet weak var done: UIButton!
-    
-    // MARK: Lifecyle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // adds custom UI
-        backgroundView.backgroundColor = UIColor(patternImage: UIImage(named: "sunrise")!)
-        loginWithTwitter.layer.cornerRadius = CGFloat(20.0)
-        loginWithFacebook.layer.cornerRadius = CGFloat(20.0)
-        done.layer.cornerRadius = CGFloat(20.0)
+    @IBOutlet var backgroundView: UIView! {
+        didSet {
+            backgroundView.backgroundColor = UIColor(patternImage: UIImage(named: "sunrise")!)
+        }
+    }
+    @IBOutlet weak var loginWithTwitter: UIButton! {
+        didSet {
+            loginWithTwitter.layer.cornerRadius = CGFloat(20.0)
+        }
+    }
+    @IBOutlet weak var loginWithFacebook: UIButton! {
+        didSet {
+            loginWithFacebook.layer.cornerRadius = CGFloat(20.0)
+        }
+    }
+    @IBOutlet weak var done: UIButton! {
+        didSet {
+            done.layer.cornerRadius = CGFloat(20.0)
+        }
     }
     
     // MARK: Actions
@@ -60,6 +65,7 @@ class LoginViewController: UIViewController {
         if User.isLoggedIntoFacebook() || User.isLoggedIntoTwitter() {
             let alert = UserAlerts.setPreferredName(sender: self)
             self.present(alert, animated: true, completion: nil)
+            UserDefaults.standard.setValue([String](), forKey: "allQuotes")
         } else {
             self.present(LoginAlerts.addSocialMedia(), animated: true, completion: nil)
         }
